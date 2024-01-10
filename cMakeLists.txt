@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.26)
+project(GA_Bonus)
+
+add_executable(GA_Bonus main.cpp)
+set(CMAKE_SUPPRESS_REGENERATION true)
+target_include_directories(GA_Bonus PUBLIC
+                           "${CMAKE_CURRENT_SOURCE_DIR}"
+                           )
