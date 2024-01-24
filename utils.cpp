@@ -46,6 +46,14 @@ namespace infoga_bonus {
         return a.x * b.y - a.y * b.x;
     }
 
+    inline float dot (const Point& a, const Point& b){
+        return a.x * b.x + a.y * b.y;
+    }
+
+    float compareP (const Point& a, const Point& b){
+        return a.x == b.x ? a.y < b.y : a.x < b.x;
+    }
+
     inline PointSet wrapToPointSet(const vector<Point> &vec)
     {
         PointSet res;

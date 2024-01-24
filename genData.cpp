@@ -90,8 +90,8 @@ namespace infoga_bonus {
         while (!feof( file ))
         {
             fgets( line, 511, file );
+            sscanf(line, "%f %f", &(result.data[i].x), &(result.data[i].y));
             i++;
-            sscanf(line, "%f %f", &result.data[i]);
         }
         return result;
     }

@@ -40,22 +40,23 @@ namespace infoga_bonus{
     }
 
     bool ValidateAlgorithmCorrectness(PointSet (*algo)(PointSet&)){
+        PointSet testset, solution;
+        // manual test cases.
+        testset = readTestCase("../testcases/test.txt");
+        solution = algo(testset);
+        for (int i = 0; i < solution.size; i++) cout << solution.data[i].x << " " << solution.data[i].y << endl;
+        if (!validateCorrectness(testset, algo(testset)))
+            return false;
+        testset.reset();
 
         // general case
         for (int i=0; i<20; i++){
-            PointSet testset = genTestSet(100);
+            testset = genTestSet(100);
             if (i%3==0) pushbackSetCopy(testset, 5); // add some duplicate points
             if (!validateCorrectness(testset, algo(testset)))
                 return false;
             testset.reset();
         }
-
-        PointSet testset;
-        // manual test cases.
-        testset = readTestCase("testcases/test.txt");
-        if (!validateCorrectness(testset, algo(testset)))
-                return false;
-        testset.reset();
 
         // one point 
         testset = genTestSet(1);
