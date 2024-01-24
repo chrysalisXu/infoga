@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <cstring>
+#include <cstdio>
 #include "utils.cpp"
 
 namespace infoga_bonus {
@@ -73,6 +74,27 @@ namespace infoga_bonus {
         target.size = target.size + addSize;
     }
 
+    PointSet readTestCase(const char* dataFile){
+        PointSet result;
+        FILE* file = fopen( dataFile, "r" );
+        if (!file) { 
+            result.size = 0;
+            return result;
+        }
+        char line[512] = { 0 };
+        fgets( line, 511, file );
+        sscanf(line, "%d", &(result.size));
+        result.data = (Point *) malloc(result.size * sizeof(Point));
+
+        int i = 0;
+        while (!feof( file ))
+        {
+            fgets( line, 511, file );
+            i++;
+            sscanf(line, "%f %f", &result.data[i]);
+        }
+        return result;
+    }
 }
 
 
