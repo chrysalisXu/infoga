@@ -36,7 +36,7 @@ namespace infoga_bonus {
                 Point cur_vector = result[start_id+2] - result[start_id+1];
                 Point pre_vector = result[start_id+1] - result[start_id];
                 float sign = cross(cur_vector, pre_vector);
-                if (sign <= 0)
+                if (sign <= epsilon)
                 {
                     result.erase(result.begin() + start_id + 1);
                     start_id --;
@@ -55,7 +55,7 @@ namespace infoga_bonus {
                 Point cur_vector = result[start_id + 2] - result[start_id + 1];
                 Point pre_vector = result[start_id + 1] - result[start_id];
                 float sign = cross(cur_vector, pre_vector);
-                if (sign <= 0)
+                if (sign <= epsilon)
                 {
                     result.erase(result.begin() + start_id + 1);
                     start_id--;

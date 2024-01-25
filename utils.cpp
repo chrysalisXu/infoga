@@ -1,6 +1,7 @@
 // Author: Jing Xu 7396120 shiyuchongf@gmail.com
 #pragma once
 #include <cstdlib>
+#include <chrono>
 #include <ctime> 
 #include <vector>
 
@@ -8,7 +9,26 @@ using namespace std;
 
 #define FLOAT_RAND_MAX static_cast <float> (RAND_MAX)
 
+#define epsilon 0.0000001 
+
+#define PI 3.1415926536f
+
 namespace infoga_bonus {
+    inline bool close_zero(const float a) { return (a <= epsilon) && (a >= 0 - epsilon); }
+
+    struct Timer
+    {
+        Timer() { reset(); }
+        float elapsed() const
+        {
+            chrono::high_resolution_clock::time_point t2 = chrono::high_resolution_clock::now();
+            chrono::duration<double> time_span = chrono::duration_cast<chrono::duration<double>>(t2 - start);
+            return (float)time_span.count();
+        }
+        void reset() { start = chrono::high_resolution_clock::now(); }
+        chrono::high_resolution_clock::time_point start;
+    };
+
     struct Point{
         float x;
         float y;

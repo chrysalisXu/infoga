@@ -4,6 +4,7 @@
 #include <ctime>
 #include <cstring>
 #include <cstdio>
+#include <algorithm>
 #include "utils.cpp"
 
 namespace infoga_bonus {
@@ -18,6 +19,21 @@ namespace infoga_bonus {
             result.data[i].x = rand_float();
             result.data[i].y = rand_float();
         }
+        return result;
+    }
+
+    PointSet genTestSetHull(int size){
+        PointSet result;
+        result.size = size;
+        result.data = (Point *) malloc(size * sizeof(Point));
+        srand(time(0));
+        float start_angle = 0, start_distance = 100;
+        for(int i=0; i<size; i++){
+            start_angle = 2 * PI * (((float)i + rand_float())/size);
+            result.data[i].x = cosf(start_angle) * start_distance;
+            result.data[i].y = sinf(start_angle) * start_distance;
+        }
+        std::random_shuffle(&result.data[0], & result.data[size-1]);
         return result;
     }
 

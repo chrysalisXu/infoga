@@ -34,7 +34,7 @@ namespace infoga_bonus {
                 Point cur_vector = dataset.data[i] - result[start_id];
                 Point pre_vector = result[start_id+1] - result[start_id];
                 float sign = cross(pre_vector, cur_vector);
-                if ((sign < 0) || ((sign == 0) && (cur_vector.lengthSquare() > pre_vector.lengthSquare())))
+                if ((sign < -epsilon) || (close_zero(sign) && (cur_vector.lengthSquare() > pre_vector.lengthSquare())))
                 {
                     result.pop_back();
                     result.push_back(dataset.data[i]);

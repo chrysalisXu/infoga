@@ -24,15 +24,14 @@ namespace infoga_bonus{
                 float cur_cross = cross(dataset.data[i] - result.data[start], cur_vector);
                 if (sign == 0)
                     sign = cur_cross;
-                if (sign * cur_cross < 0) {
+                if (sign * cur_cross < -epsilon) {
                     return false;
                 }
-                if (sign * cur_cross == 0){
+                if (close_zero(sign * cur_cross)){
                     float ratio = (dataset.data[i] - result.data[start]).lengthSquare() / cur_vector.lengthSquare();
                     if (ratio > 1) {
                         return false; // 3 point same line
                     }
-                        
                 }
             }
         }
@@ -85,9 +84,12 @@ namespace infoga_bonus{
         // line
         for (int i=0; i<4; i++){
             testset = genTestSetLowK(100,2);
+            if (i%2 == 0) pushbackSetCopy(testset, 10);
             if (!validateCorrectness(testset, algo(testset)))
                 return false;
         }
+
+        // general 
         for (int i=0; i<4; i++){
             testset = genTestSetLowK(80,2);
             pushbackrand(testset, 20);
